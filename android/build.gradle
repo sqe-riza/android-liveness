@@ -42,7 +42,7 @@ android {
 
     sourceSets {
       main {
-        manifest.srcFile "src/main/AndroidManifestNew.xml"
+        manifest.srcFile "src/main/AndroidManifest.xml"
       }
     }
   }
@@ -52,7 +52,7 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
-
+    vectorDrawables.useSupportLibrary = true
   }
 
   buildTypes {
@@ -76,11 +76,18 @@ repositories {
   google()
 }
 
+rootProject.allprojects {
+  repositories {
+    maven {
+      url "file://${rootDir}/repo"
+    }
+  }
+}
 
 dependencies {
-  // For < 0.71, this will be from the local maven repo
-  // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
-  //noinspection GradleDynamicVersion
+  implementation 'androidx.appcompat:appcompat:1.4.2'
+  api 'com.bsimbinding:livenessDetectionRn:1.0.0'
   implementation "com.facebook.react:react-native:+"
+  implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
 
