@@ -13,9 +13,11 @@ import ai.advance.liveness.lib.Market;
 @ReactModule(name = AndroidLivenessModule.NAME)
 public class AndroidLivenessModule extends ReactContextBaseJavaModule {
   public static final String NAME = "AndroidLiveness";
+  private final ReactApplicationContext reactContext;
 
   public AndroidLivenessModule(ReactApplicationContext reactContext) {
     super(reactContext);
+    this.reactContext = reactContext;
   }
 
   @Override
