@@ -22,7 +22,7 @@ import aai.liveness.Detector;
 import aai.liveness.GuardianLivenessDetectionSDK;
 import aai.liveness.LivenessResult;
 import aai.liveness.LivenessView;
-import aai.liveness.R;
+import com.androidliveness.R;
 import aai.liveness.http.entity.ResultEntity;
 import aai.liveness.impl.LivenessCallback;
 import aai.liveness.impl.LivenessGetFaceDataCallback;

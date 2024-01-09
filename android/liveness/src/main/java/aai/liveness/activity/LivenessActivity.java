@@ -88,6 +88,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
         }
     }
 
+
     /**
      * init fields
      * 初始化变量
@@ -171,7 +172,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
      * @param warnCode the status of current frame 当前的状态
      */
     private void updateTipUIView(Detector.WarnCode warnCode) {
-        if (mLivenessView.isVertical()) {// phone not vertical
+        if (mLivenessView.isVertical()) {//phone not vertical
             if (warnCode != null) {
                 switch (warnCode) {
                     case FACEMISSING:
@@ -278,7 +279,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
      */
     @Override
     public void onDetectorInitComplete(final boolean isValid, final String errorCode,
-            final String message) {
+                                       final String message) {
         if (mInitProgressDialog != null) {
             mInitProgressDialog.dismiss();
         }
@@ -291,16 +292,15 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
             } else {
                 errorMessage = message;
             }
-            new AlertDialog.Builder(this).setMessage(errorMessage)
-                    .setPositiveButton(R.string.liveness_perform, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            LivenessResult.setErrorMsg(errorMessage);
-                            dialog.dismiss();
-                            setResult(Activity.RESULT_OK);
-                            finish();
-                        }
-                    }).create().show();
+            new AlertDialog.Builder(this).setMessage(errorMessage).setPositiveButton(R.string.liveness_perform, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    LivenessResult.setErrorMsg(errorMessage);
+                    dialog.dismiss();
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                }
+            }).create().show();
         }
     }
 
@@ -388,8 +388,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
     }
 
     /**
-     * called by current frame is warn or become normal,is necessary to update tip
-     * UI
+     * called by current frame is warn or become normal,is necessary to update tip UI
      * 当前帧的状态发生异常或者从异常状态变为正常的时候，需要更新 UI 上的提示语
      *
      * @param warnCode status of current frame 本帧的状态
@@ -400,8 +399,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
     }
 
     /**
-     * called by Remaining time changed of current action,is necessary to update
-     * countdown timer view
+     * called by Remaining time changed of current action,is necessary to update countdown timer view
      * 当前动作剩余时间变化,需要更新倒计时控件上的时间
      *
      * @param remainingTimeMills remaining time of current action 毫秒单位的剩余时间
@@ -500,7 +498,7 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
 
     @Override
     protected String[] getRequiredPermissions() {
-        return new String[] { Manifest.permission.CAMERA };
+        return new String[]{Manifest.permission.CAMERA};
     }
 
     @Override
@@ -510,12 +508,11 @@ public class LivenessActivity extends PermissionActivity implements LivenessCall
 
     @Override
     protected void onPermissionRefused() {
-        new AlertDialog.Builder(this).setMessage(getString(R.string.liveness_no_camera_permission))
-                .setPositiveButton(getString(R.string.liveness_perform), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                }).create().show();
+        new AlertDialog.Builder(this).setMessage(getString(R.string.liveness_no_camera_permission)).setPositiveButton(getString(R.string.liveness_perform), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        }).create().show();
     }
 }

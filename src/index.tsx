@@ -20,3 +20,12 @@ const AndroidLiveness = NativeModules.AndroidLiveness
 export function multiply(a: number, b: number): Promise<number> {
   return AndroidLiveness.multiply(a, b);
 }
+
+export const sdkVersion = () => {
+  console.info('LivenessModule', JSON.stringify(NativeModules));
+  return NativeModules.LivenessModule?.sdkVersion();
+};
+
+export const asd = () => {
+  return NativeModules.LivenessModule.initSDKByLicense('Indonesia', false);
+};

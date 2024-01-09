@@ -1,4 +1,11 @@
 buildscript {
+  allprojects {
+    repositories {
+      maven {
+        url "file://${rootDir}/repo"
+      }
+    }
+  }
   repositories {
     google()
     mavenCentral()
@@ -76,17 +83,12 @@ repositories {
   google()
 }
 
-rootProject.allprojects {
-  repositories {
-    maven {
-      url "file://${rootDir}/repo"
-    }
-  }
-}
-
 dependencies {
-  implementation 'androidx.appcompat:appcompat:1.4.2'
+  api 'com.bsimbinding:coreLiveness:1.0.0'
+  api 'com.bsimbinding:livenessDetection:1.0.0'
   api 'com.bsimbinding:livenessDetectionRn:1.0.0'
+
+  implementation 'androidx.appcompat:appcompat:1.4.2'
   implementation "com.facebook.react:react-native:+"
   implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
